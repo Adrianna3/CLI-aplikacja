@@ -9,7 +9,7 @@ const listContacts = async () => {
   try {
     const contacts = await fs.readFile(contactsPath);
     // console.log(JSON.parse(contacts));
-    //   console.table(JSON.parse(contacts));
+      console.table(JSON.parse(contacts));
     return JSON.parse(contacts);
   } catch (error) {
     console.log(error.message);
