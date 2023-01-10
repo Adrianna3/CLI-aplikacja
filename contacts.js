@@ -9,7 +9,7 @@ const listContacts = async () => {
   try {
     const contacts = await fs.readFile(contactsPath);
     // console.log(JSON.parse(contacts));
-      console.table(JSON.parse(contacts));
+      // console.table(JSON.parse(contacts));
     return JSON.parse(contacts);
   } catch (error) {
     console.log(error.message);
@@ -29,8 +29,10 @@ const getContactById = async (contactId) => {
 const removeContact = async (contactId) => {
   try {
     const contacts = await listContacts();
+    const contact = contacts.filter(({ id }) => id === contactId);
     const filteredContacts = contacts.filter(({ id }) => id !== contactId);
     await fs.writeFile(contactsPath, JSON.stringify(filteredContacts, null, 2));
+    console.table(contact);
   } catch (error) {
     console.log(error.message);
   }
@@ -43,6 +45,7 @@ const addContact = async (name, email, phone) => {
     const newContact = { id: lastId.toString(), name, email, phone };
     const updatedContacts = [...contacts, newContact];
     await fs.writeFile(contactsPath, JSON.stringify(updatedContacts, null, 2));
+    console.table(newContact);
   } catch (error) {
     console.log(error.message);
   }
