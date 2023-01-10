@@ -8,8 +8,7 @@ const contactsPath = path.resolve("db");
 const listContacts = async () => {
   try {
     const contacts = await fs.readFile(contactsPath);
-    // console.log(JSON.parse(contacts));
-      // console.table(JSON.parse(contacts));
+    console.table(JSON.parse(contacts));
     return JSON.parse(contacts);
   } catch (error) {
     console.log(error.message);
@@ -52,15 +51,3 @@ const addContact = async (name, email, phone) => {
 };
 
 module.exports = { listContacts, getContactById, removeContact, addContact };
-
-// (async () => {
-//     console.log(await listContacts());
-
-//     console.log(await getContactById("5"));
-
-//     await removeContact("4");
-
-//     await addContact("Ada", "aa333a@wp.pl", "5555533333");
-
-//     console.log(await listContacts());
-// })();
